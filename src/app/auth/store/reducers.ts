@@ -12,10 +12,13 @@ import { register } from "./actions";
      initialState,
      on(register, (state) => ({...state, isSubmitting: true}))
    ),
- })
+ });
 
- export const {name: authFeatureKey, reducer: authReducer} = authFeature
 
+ export const {name: authFeatureKey, reducer: authReducer,selectIsSubmitting} = authFeature
+
+
+ // below is another way of doing it
 
 // const usersFeature = myCreateFeature({
 //   name: 'Users',
@@ -25,7 +28,7 @@ import { register } from "./actions";
 //   }),
 // })
 
-// // usersFeature.selectUsers
+// usersFeature.selectSelectedUser
 
 // declare function myCreateFeature<Name extends string, State> (config: {
 //   name: Name,
