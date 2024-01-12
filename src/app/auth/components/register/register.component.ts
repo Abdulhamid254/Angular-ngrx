@@ -5,6 +5,8 @@ import { Store } from '@ngrx/store';
 import { register } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { RouterModule } from '@angular/router';
+import { selectIsSubmitting } from '../../store/selectors';
+import { AuthStateInterface } from '../../types/authState.interface';
 
 @Component({
   selector: 'app-register',
@@ -15,9 +17,10 @@ import { RouterModule } from '@angular/router';
 })
 export class RegisterComponent implements OnInit{
   reactiveForm!: FormGroup;
+  isSubmitting$ = this.store.select(selectIsSubmitting)
 
 
-  constructor(private store: Store){}
+  constructor(private store: Store<{auth: AuthStateInterface}>){}
 
   ngOnInit() {
     this.reactiveForm = new FormGroup({
