@@ -1,19 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Store } from '@ngrx/store';
+import { Store, select } from '@ngrx/store';
 import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
 import { RouterModule } from '@angular/router';
-import { selectIsSubmitting } from '../../store/reducers';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/reducers';
 import { AuthStateInterface } from '../../types/authState.interface';
 import { AuthService } from '../../services/auth.service';
+import { combineLatest } from 'rxjs';
+import { BackendErrorMessagesComponent } from '../../../shared/components/backend-error-messages/backend-error-messages.component';
+
 
 
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [CommonModule,ReactiveFormsModule,RouterModule,],
+  imports: [CommonModule,ReactiveFormsModule,RouterModule,BackendErrorMessagesComponent],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -21,9 +24,10 @@ import { AuthService } from '../../services/auth.service';
 export class RegisterComponent implements OnInit{
   reactiveForm!: FormGroup;
   private initialFormValues: any;
-  isSubmitting$ = this.store.select(selectIsSubmitting)
-
-
+  data$ = combineLatest({
+  isSubmitting$: this.store.select(selectIsSubmitting),
+  backendErrors$: this.store.select(selectValidationErrors)
+})
   //the only place we are able to reset our submitting status is inside the ngSubmit/when resetting the form reset()
   // reset() is bound to the form group...so to access that we can get a refrence to the formGroup directive
   //instance via viewChild() decorator as shown below
