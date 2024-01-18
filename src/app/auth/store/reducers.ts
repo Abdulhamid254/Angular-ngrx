@@ -4,6 +4,9 @@ import { authActions } from "./actions";
 
  const initialState: AuthStateInterface = {
    isSubmitting: false,
+   isLoading: false,
+   currentUser: undefined,
+   validationErrors: null
  }
 
 
@@ -12,12 +15,23 @@ import { authActions } from "./actions";
    name: 'auth',
    reducer: createReducer(
      initialState,
-     on(authActions.register, (state) => ({...state, isSubmitting: true}))
+     on(authActions.register, (state) => ({...state, isSubmitting: true, validationErrors: null})),
+     on(authActions.registerSuccess, (state, actions) => ({...state, isSubmitting: false,
+     currentUser:actions.currentUser})),
+     on(authActions.registerFailure, (state,action) => ({...state, isSubmitting: false, validationErrors: action.errors,})),
    ),
  });
 
 
- export const {name: authFeatureKey, reducer: authReducer,selectIsSubmitting} = authFeature
+ export const
+ {
+  name: authFeatureKey,
+  reducer: authReducer,
+  selectIsSubmitting,
+  selectIsLoading,
+  selectCurrentUser,
+  selectValidationErrors,
+} = authFeature
 
 
  // below is another way of doing it

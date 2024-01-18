@@ -51,9 +51,9 @@ export class RegisterComponent implements OnInit{
     const request: RegisterRequestInterface = {
       user:this.reactiveForm.getRawValue()
     }
-    // this.store.dispatch(authActions.register({ request }));
-    this.authService.register(request).subscribe(res => console.log('res',res)
-    )
+    this.store.dispatch(authActions.register({ request }));
+    // this.authService.register(request).subscribe(res => console.log('res',res)
+    // )
     this.initialFormValues = this.reactiveForm.value;
     // here we are directly resetting the model
     // this.reactiveForm.reset()
