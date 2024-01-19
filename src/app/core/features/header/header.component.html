@@ -12,9 +12,16 @@
 </div>
 <!-- user profile & calender -->
  <!-- add current date & time -->
-<div class="flex space-x-3">
-  <fa-icon [icon]="faSearch"></fa-icon>
-  <fa-icon [icon]="faBell"></fa-icon>
-  <fa-icon [icon]="faUser"></fa-icon>
+<div class="flex gap-2 pt-2 justify-center items-center">
+  <div class="box">
+    <input type="text" placeholder="Search...."/>
+    <fa-icon [icon]="faSearch"></fa-icon>
+  </div>
+  <div class="flex p-4 items-center">
+    <fa-icon [icon]="faBell"></fa-icon>
+  <!-- <fa-icon [icon]="faUser"></fa-icon> -->
+  <app-dropdown></app-dropdown>
 </div>
+</div>
+
 </mat-toolbar>

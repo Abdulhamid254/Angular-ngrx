@@ -1,23 +1,34 @@
-app-banner {
-  margin-right: 15px;
-}
-app-chip {
-  margin-right: 15px;
-}
-app-banner {
-  margin-bottom: 15px;
-}
+
 button {
   margin-right: 15px;
 }
-h3 {
-  margin-bottom: 5px;
-}
-/* :host {
+.box {
+  height: 30px;
   display: flex;
-  height: 100vh;
+  cursor: pointer;
+  padding: 10px 20px;
+  background: #fff;
+  border-radius: 30px;
   align-items: center;
-  justify-items: center;
-  padding: 20px;
-  box-sizing: border-box;
-} */
+  box-shadow: 0 10px 25px rgba(0,0,0,0);
+}
+
+.box:hover input{
+  width: 200px;
+}
+
+.box input{
+  width:0;
+  outline: none;
+  border: none;
+  font-weight: 500;
+  transition: 0.8s;
+  background: transparent;
+}
+
+.box .fa-icon{
+  color: grey;
+  font-size: 18px;
+}
+
+
