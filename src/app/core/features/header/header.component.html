@@ -1,0 +1,20 @@
+<mat-toolbar class="bg-[#e6eaeb] flex p-2 box-border items-center justify-between cursor-pointer">
+  <div>
+  <img class="w-[70px] px-2" src="assets/bmx.jfif" alt="">
+</div>
+<!-- the buttons -->
+<div class="space-x-2">
+  <overviewbtn dfButton [type]="'stroked'">Overview</overviewbtn>
+  <pchartbtn dfButton [type]="'stroked'">PatientChart</pchartbtn>
+  <callbtn dfButton [type]="'stroked'">Calender</callbtn>
+  <docbtn dfButton [type]="'stroked'">Doctors</docbtn>
+  <msgbtn dfButton [type]="'stroked'">Messages</msgbtn>
+</div>
+<!-- user profile & calender -->
+ <!-- add current date & time -->
+<div class="flex space-x-3">
+  <fa-icon [icon]="faSearch"></fa-icon>
+  <fa-icon [icon]="faBell"></fa-icon>
+  <fa-icon [icon]="faUser"></fa-icon>
+</div>
+</mat-toolbar>
